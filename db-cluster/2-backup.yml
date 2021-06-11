@@ -1,0 +1,17 @@
+---
+apiVersion: stackgres.io/v1
+kind: SGBackupConfig
+metadata:
+  name: backup-config-s3-backend
+spec:
+  baseBackups:
+    cronSchedule: '*/5 * * * *'
+    retention: 6
+  storage:
+    type: 's3'
+    s3:
+      bucket: s3-demo-stackgres
+      awsCredentials:
+        secretKeySelectors:
+          accessKeyId: {name: aws-creds-secret, key: 'accessKeyId'}
+          secretAccessKey: {name: aws-creds-secret, key: 'secretAccessKey'}
