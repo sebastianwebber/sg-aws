@@ -1,11 +1,12 @@
 require "json"
 
-SG_VERSION = "1.0.0-alpha4"
+# SG_VERSION = "1.0.0-alpha4"
+SG_VERSION = "1.0.0-beta1"
 UI_PASSWD = "password"
 
 desc "setup stackgres"
 task :setup_stackgres, [] do |t, args|
-  run "kubectl", "create namespace", "stackgres"
+  try_run "kubectl", "create namespace", "stackgres"
 
   chart_url = "https://stackgres.io/downloads/stackgres-k8s/stackgres/#{SG_VERSION}/helm/stackgres-operator.tgz"
 

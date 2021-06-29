@@ -10,3 +10,6 @@ task :create_cluster, [] do |t, args|
       --version 1.19
   }
 end
+task :update_kubeconfig, [] do |t, args|
+  run "aws", "eks update-kubeconfig", :name => K8S_CLUSTER_NAME
+end
