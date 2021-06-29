@@ -22,7 +22,7 @@ end
 
 desc "deploy the database"
 task :deploy_database, [] => [:deploy_s3_creds] do |t, args|
-  Dir.glob("db-cluster/*.yml").sort_by do |file|
+  Dir.glob("db-cluster/*.yml").sort_by do |f|
     File.basename(f, ".yml").delete("^0-9").to_i
   end.each do |f|
     run "kubectl", "apply", :filename => f

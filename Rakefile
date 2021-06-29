@@ -5,6 +5,7 @@ setup_deps = [
   :create_cluster,
   :setup_helm,
   :setup_monitoring,
+  :setup_s3,
   :setup_stackgres,
 ]
 

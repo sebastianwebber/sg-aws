@@ -35,4 +35,6 @@ task :setup_s3, [] do |t, args|
       #{process_args(common_args).join(" ")}
       --output json | tee bucket-creds.json
   }
+
+  run "aws", "s3 mb s3://#{S3_BACKUP_BUCKET}", **common_args.reject { |k, v| k == "user-name" }
 end
