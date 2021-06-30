@@ -17,7 +17,7 @@ spec:
     sgPoolingConfig: poolconfig-session-large
   distributedLogs:
     sgDistributedLogs: my-distributed-logs
-  postgresVersion: "12.4"
+  postgresVersion: "12.6"
   prometheusAutobind: true
   sgInstanceProfile: instance-profile-medium
   initialData:
