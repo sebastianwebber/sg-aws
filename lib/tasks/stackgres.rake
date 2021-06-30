@@ -1,4 +1,5 @@
 require "json"
+require "base64"
 
 # SG_VERSION = "1.0.0-alpha4"
 SG_VERSION = "1.0.0-beta1"
@@ -30,6 +31,10 @@ task :deploy_database, [] => [:deploy_s3_creds] do |t, args|
   end
 end
 
+def b64(val)
+  Base64.encode64(val).strip
+end
+
 desc "config s3 secrets"
 task :deploy_s3_creds, [] do |t, args|
   creds_file = JSON.parse(File.read("./bucket-creds.json"))
@@ -42,8 +47,8 @@ task :deploy_s3_creds, [] do |t, args|
     },
     :type => "Opaque",
     :data => {
-      "accessKeyId" => creds_file["AccessKey"]["AccessKeyId"],
-      "secretAccessKey" => creds_file["AccessKey"]["SecretAccessKey"],
+      "accessKeyId" => b64(creds_file["AccessKey"]["AccessKeyId"]),
+      "secretAccessKey" => b64(creds_file["AccessKey"]["SecretAccessKey"]),
     },
   }
 
